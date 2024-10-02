@@ -1,24 +1,21 @@
-#!/usr/bin/pythoni
-"""A script to determine pascal's triangle for any number"""
+#!/usr/bin/python3
+"""function writing for Pascal's Triangle"""
 
 
 def pascal_triangle(n):
-        """
-            returns a list of lists of integers representing the Pascal’s triangle of n
-                """
-                    triangle = []
+    """
+    returns a lists of integers
+    representing the Pascal’s triangle
+    """
+    if n <= 0:
+        return []
 
-                        # return (triangle if n <= 0)
-                            if n <= 0:
-                                        return triangle
-                                        for i in range(n):
-                                                    temp_list = []
-
-                                                            for j in range(i+1):
-                                                                            if j == 0 or j == i:
-                                                                                                temp_list.append(1)
-                                                                                                            else:
-                                                                                                                                temp_list.append(triangle[i-1][j-1] + triangle[i-1][j])
-                                                                                                                                        triangle.append(temp_list)
-                                                                                                                                            # print(triangle)
-                                                                                                                                                return triangle
+    triangle = [[1]]
+    while len(triangle) != n:
+        previous = triangle[-1]
+        current = [1]
+        for i in range(len(previous) - 1):
+            current.append(previous[i] + previous[i + 1])
+        current.append(1)
+        triangle.append(current)
+    return triangle
